@@ -1,0 +1,19 @@
+{
+  "id": "esp32",
+  "name": "ESP32 DevKit",
+  "category": "controller",
+  "pins": [
+    {
+      "name": "GPIO34",
+      "type": "analog_input"
+    },
+    {
+      "name": "GPIO21",
+      "type": "i2c_sda"
+    },
+    {
+      "name": "GPIO22",
+      "type": "i2c_scl"
+    }
+  ]
+}
