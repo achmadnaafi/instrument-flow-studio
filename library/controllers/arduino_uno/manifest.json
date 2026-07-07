@@ -1,0 +1,7 @@
+{
+  "id": "arduino_uno",
+  "name": "Arduino Uno",
+  "category": "controller",
+  "displayCategory": "Microcontroller",
+  "theme": "controller"
+}

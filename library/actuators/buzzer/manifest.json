@@ -1,0 +1,7 @@
+{
+  "id": "buzzer",
+  "name": "Buzzer",
+  "category": "actuator",
+  "displayCategory": "Audio Indicator",
+  "theme": "actuator"
+}

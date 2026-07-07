@@ -1,0 +1,7 @@
+{
+  "id": "inductor",
+  "name": "Inductor",
+  "category": "passive",
+  "displayCategory": "Inductor",
+  "theme": "passive"
+}

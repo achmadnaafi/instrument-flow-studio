@@ -2,18 +2,28 @@
 import { VueFlow } from '@vue-flow/core'
 import { Background } from '@vue-flow/background'
 import { Controls } from '@vue-flow/controls'
-
-import { useCanvasStore } from '@/stores/canvasStore'
-
+import { shallowRef } from 'vue'
 import '@vue-flow/core/dist/style.css'
 import '@vue-flow/core/dist/theme-default.css'
 
+import { useCanvasStore } from '@/stores/canvasStore'
+import ComponentNode from './nodes/ComponentNode.vue'
+
 const canvasStore = useCanvasStore()
+
+console.log(canvasStore.nodes)
+
+const nodeTypes = shallowRef({
+  component: ComponentNode
+})
 </script>
 
 <template>
   <div class="canvas-container">
-    <VueFlow :nodes="canvasStore.nodes">
+    <VueFlow
+      :nodes="canvasStore.nodes"
+      :node-types="nodeTypes"
+    >
       <Background />
       <Controls />
     </VueFlow>

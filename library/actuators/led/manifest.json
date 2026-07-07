@@ -1,0 +1,7 @@
+{
+  "id": "led",
+  "name": "LED",
+  "category": "actuator",
+  "displayCategory": "Indicator",
+  "theme": "actuator"
+}

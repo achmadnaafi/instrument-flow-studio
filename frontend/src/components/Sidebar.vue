@@ -1,30 +1,40 @@
 <script setup lang="ts">
 import { useCanvasStore } from '@/stores/canvasStore'
+import { loadComponents } from '@/services/componentLoader'
 
 const canvasStore = useCanvasStore()
+const components = loadComponents()
+console.log(components)
+
 </script>
 
 <template>
   <aside class="sidebar">
-    <h3>Controllers</h3>
-    <ul>
-      <li @click="canvasStore.addNode('ESP32')">ESP32</li>
-      <li @click="canvasStore.addNode('Arduino Uno')">Arduino Uno</li>
-    </ul>
 
-    <h3>Sensors</h3>
-    <ul>
-      <li @click="canvasStore.addNode('MQ2')">MQ2</li>
-      <li @click="canvasStore.addNode('DHT22')">DHT22</li>
-      <li @click="canvasStore.addNode('BMP280')">BMP280</li>
-    </ul>
+    <div
+      v-for="category in components"
+      :key="category.id"
+      class="category"
+    >
 
-    <h3>Actuators</h3>
-    <ul>
-      <li>Relay</li>
-      <li>LED</li>
-      <li>Buzzer</li>
-    </ul>
+      <h3>{{ category.title }}</h3>
+
+      <ul>
+
+        <li
+          v-for="component in category.components"
+          :key="component.id"
+          @click="canvasStore.addNode(component)"
+        >
+
+          {{ component.name }}
+
+        </li>
+
+      </ul>
+
+    </div>
+
   </aside>
 </template>
 
@@ -46,10 +56,17 @@ ul {
 }
 
 li {
-  padding: 8px;
-  margin: 4px 0;
-  background: white;
-  border: 1px solid #ddd;
-  cursor: pointer;
+    padding:10px;
+    margin:6px 0;
+    background:white;
+    border:1px solid #d1d5db;
+    border-radius:8px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+li:hover{
+    background:#eff6ff;
+    border-color:#3b82f6;
 }
 </style>

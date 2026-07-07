@@ -1,0 +1,7 @@
+{
+  "id": "resistor",
+  "name": "Resistor",
+  "category": "passive",
+  "displayCategory": "Fixed Resistor",
+  "theme": "passive"
+}
