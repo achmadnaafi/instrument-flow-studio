@@ -1,30 +1,49 @@
 <script setup lang="ts">
 import { useCanvasStore } from '@/stores/canvasStore'
+import { loadComponents } from '@/services/componentLoader'
 
 const canvasStore = useCanvasStore()
+const components = loadComponents()
+console.log(components)
+
 </script>
 
 <template>
   <aside class="sidebar">
+
     <h3>Controllers</h3>
     <ul>
-      <li @click="canvasStore.addNode('ESP32')">ESP32</li>
-      <li @click="canvasStore.addNode('Arduino Uno')">Arduino Uno</li>
+      <li
+        v-for="controller in components.controllers"
+        :key="controller.id"
+        @click="canvasStore.addNode(controller)"
+      >
+        {{ controller.name }}
+      </li>
     </ul>
 
     <h3>Sensors</h3>
     <ul>
-      <li @click="canvasStore.addNode('MQ2')">MQ2</li>
-      <li @click="canvasStore.addNode('DHT22')">DHT22</li>
-      <li @click="canvasStore.addNode('BMP280')">BMP280</li>
+      <li
+        v-for="sensor in components.sensors"
+        :key="sensor.id"
+        @click="canvasStore.addNode(sensor)"
+      >
+        {{ sensor.name }}
+      </li>
     </ul>
 
     <h3>Actuators</h3>
     <ul>
-      <li>Relay</li>
-      <li>LED</li>
-      <li>Buzzer</li>
+      <li
+        v-for="actuator in components.actuators"
+        :key="actuator.id"
+        @click="canvasStore.addNode(actuator)"
+      >
+        {{ actuator.name }}
+      </li>
     </ul>
+    
   </aside>
 </template>
 

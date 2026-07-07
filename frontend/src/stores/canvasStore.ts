@@ -7,17 +7,18 @@ export const useCanvasStore = defineStore('canvas', {
   }),
 
   actions: {
-    addNode(label: string) {
+    addNode(component: any) {
       this.nodeCount++
 
       this.nodes.push({
-        id: `${label}-${this.nodeCount}`,
+        id: `${component.id}-${this.nodeCount}`,
         position: {
           x: 100 + (this.nodeCount * 50),
           y: 100 + (this.nodeCount * 50)
         },
         data: {
-          label
+          label: component.name,
+          component
         }
       })
     }
