@@ -1,5 +1,7 @@
 {
   "id": "bmp280",
   "name": "BMP280",
-  "category": "sensor"
+  "category": "sensor",
+  "displayCategory": "Pressure Sensor",
+  "theme": "sensor"
 }

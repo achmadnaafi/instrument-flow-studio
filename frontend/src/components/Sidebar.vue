@@ -11,39 +11,30 @@ console.log(components)
 <template>
   <aside class="sidebar">
 
-    <h3>Controllers</h3>
-    <ul>
-      <li
-        v-for="controller in components.controllers"
-        :key="controller.id"
-        @click="canvasStore.addNode(controller)"
-      >
-        {{ controller.name }}
-      </li>
-    </ul>
+    <div
+      v-for="category in components"
+      :key="category.id"
+      class="category"
+    >
 
-    <h3>Sensors</h3>
-    <ul>
-      <li
-        v-for="sensor in components.sensors"
-        :key="sensor.id"
-        @click="canvasStore.addNode(sensor)"
-      >
-        {{ sensor.name }}
-      </li>
-    </ul>
+      <h3>{{ category.title }}</h3>
 
-    <h3>Actuators</h3>
-    <ul>
-      <li
-        v-for="actuator in components.actuators"
-        :key="actuator.id"
-        @click="canvasStore.addNode(actuator)"
-      >
-        {{ actuator.name }}
-      </li>
-    </ul>
-    
+      <ul>
+
+        <li
+          v-for="component in category.components"
+          :key="component.id"
+          @click="canvasStore.addNode(component)"
+        >
+
+          {{ component.name }}
+
+        </li>
+
+      </ul>
+
+    </div>
+
   </aside>
 </template>
 
@@ -65,10 +56,17 @@ ul {
 }
 
 li {
-  padding: 8px;
-  margin: 4px 0;
-  background: white;
-  border: 1px solid #ddd;
-  cursor: pointer;
+    padding:10px;
+    margin:6px 0;
+    background:white;
+    border:1px solid #d1d5db;
+    border-radius:8px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+li:hover{
+    background:#eff6ff;
+    border-color:#3b82f6;
 }
 </style>

@@ -1,5 +1,7 @@
 {
   "id": "relay",
   "name": "Relay",
-  "category": "actuator"
+  "category": "actuator",
+  "displayCategory": "Relay Module",
+  "theme": "actuator"
 }

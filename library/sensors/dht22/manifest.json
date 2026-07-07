@@ -1,5 +1,7 @@
 {
   "id": "dht22",
   "name": "DHT22",
-  "category": "sensor"
+  "category": "sensor",
+  "displayCategory": "Temperature & Humidity Sensor",
+  "theme": "sensor"
 }

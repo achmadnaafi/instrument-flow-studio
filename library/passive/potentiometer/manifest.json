@@ -1,0 +1,7 @@
+{
+  "id": "potentiometer",
+  "name": "Potentiometer",
+  "category": "passive",
+  "displayCategory": "Variable Resistor",
+  "theme": "passive"
+}

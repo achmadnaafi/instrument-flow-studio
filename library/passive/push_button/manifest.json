@@ -1,0 +1,7 @@
+{
+  "id": "push_button",
+  "name": "Push Button",
+  "category": "passive",
+  "displayCategory": "Momentary Switch",
+  "theme": "passive"
+}
