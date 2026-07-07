@@ -8,6 +8,9 @@ import '@vue-flow/core/dist/theme-default.css'
 
 import { useCanvasStore } from '@/stores/canvasStore'
 import ComponentNode from './nodes/ComponentNode.vue'
+import { useEditorShortcuts } from '@/composables/useEditorShortcuts'
+
+useEditorShortcuts()
 
 const canvasStore = useCanvasStore()
 
@@ -20,7 +23,6 @@ const nodeTypes = shallowRef({
 function onNodeClick(event: NodeMouseEvent) {
   canvasStore.selectNode(event.node.id)
 }
-
 </script>
 
 <template>

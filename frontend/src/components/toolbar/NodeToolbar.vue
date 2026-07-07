@@ -8,7 +8,9 @@ import {
 } from 'lucide-vue-next'
 
 import { useCanvasStore } from '@/stores/canvasStore'
+import { useClipboard } from '@/composables/useClipboard'
 
+const clipboard = useClipboard()
 const props = defineProps<{
   nodeId: string
 }>()
@@ -18,17 +20,39 @@ const canvasStore = useCanvasStore()
 function handleDelete() {
   canvasStore.removeNode(props.nodeId)
 }
+
+function handleDuplicate() {
+  console.log('Duplicate clicked')
+  canvasStore.duplicateNode(props.nodeId)
+}
+
+function handleCopy() {
+
+  const node = canvasStore.getNode(props.nodeId)
+
+  if (!node) return
+
+  clipboard.copyNode(node)
+
+}
+
 </script>
 
 <template>
   <div class="toolbar-actions">
 
-    <ActionButton title="Duplicate">
-      <CopyPlus :size="18" />
+    <ActionButton
+    title="Duplicate"
+    @click="handleDuplicate"
+    >
+    <CopyPlus :size="18" />
     </ActionButton>
-
-    <ActionButton title="Copy">
-      <Copy :size="18" />
+    
+    <ActionButton
+        title="Copy"
+        @click="handleCopy"
+    >
+        <Copy :size="18"/>
     </ActionButton>
 
     <ActionButton
