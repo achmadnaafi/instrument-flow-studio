@@ -4,6 +4,7 @@ import { componentThemes } from '@/themes/componentThemes'
 import { useCanvasStore } from '@/stores/canvasStore'
 import type { NodeProps } from '@vue-flow/core'
 import type { ComponentManifest } from '@/types/ComponentManifest'
+import NodeToolbar from '@/components/toolbar/NodeToolbar.vue'
 
 interface ComponentNodeData {
   label: string
@@ -24,28 +25,53 @@ const isSelected = computed(() => {
   return canvasStore.selectedNodeId === props.id
 })
 
+const emit = defineEmits<{
+  (e:'delete-node', nodeId:string): void
+}>()
+
+function handleDelete() {
+  emit('delete-node', props.id)
+}
+
 </script>
 
 <template>
-  <div class="component-node">
-
-    <div class="header">
+  <div class="node-wrapper">
 
     <div
-        class="dot"
-        :style="{
-        backgroundColor: theme.color
-        }"
-    ></div>
-
-    <div class="name">
-        {{ props.data.component.name }}
+      class="node-toolbar"
+      v-if="isSelected"
+    >
+      <NodeToolbar
+        v-if="isSelected"
+        :node-id="props.id"
+      />
     </div>
 
-    </div>
+    <div
+      class="component-node"
+      :class="{
+        selected: isSelected
+      }"
+    >
+      <div class="header">
 
-    <div class="category">
-    {{ props.data.component.displayCategory }}
+      <div
+          class="dot"
+          :style="{
+          backgroundColor: theme.color
+          }"
+      ></div>
+
+      <div class="name">
+          {{ props.data.component.name }}
+      </div>
+
+      </div>
+
+      <div class="category">
+      {{ props.data.component.displayCategory }}
+      </div>
     </div>
 
   </div>
@@ -53,7 +79,7 @@ const isSelected = computed(() => {
 
 <style scoped>
 
-.component-node {
+.component-node{
 
     min-width:190px;
 
@@ -71,11 +97,13 @@ const isSelected = computed(() => {
 
 }
 
-.component-node:hover{
+.component-node:hover:not(.selected){
 
     transform:translateY(-2px);
 
-    box-shadow:0 8px 20px rgba(0,0,0,.12);
+    border-color:#cbd5e1;
+
+    box-shadow:0 8px 18px rgba(0,0,0,.10);
 
 }
 
@@ -121,4 +149,33 @@ const isSelected = computed(() => {
 
 }
 
+.component-node.selected{
+
+    border-color:#2563eb;
+
+    box-shadow:
+        0 0 0 4px rgba(37,99,235,.15),
+        0 8px 18px rgba(0,0,0,.12);
+
+}
+
+.node-wrapper{
+
+    position:relative;
+
+}
+
+.node-toolbar{
+
+    position:absolute;
+
+    top:-42px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    z-index:10;
+
+}
 </style>

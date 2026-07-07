@@ -31,6 +31,13 @@ export const useCanvasStore = defineStore('canvas', {
     },
     clearSelection() {
       this.selectedNodeId = null
+    },
+    removeNode(nodeId: string) {
+      this.nodes = this.nodes.filter(node => node.id !== nodeId)
+
+      if (this.selectedNodeId === nodeId) {
+        this.selectedNodeId = null
+      }
     }
   }
 })

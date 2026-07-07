@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { VueFlow } from '@vue-flow/core'
+import { VueFlow, type NodeMouseEvent } from '@vue-flow/core'
 import { Background } from '@vue-flow/background'
 import { Controls } from '@vue-flow/controls'
 import { shallowRef } from 'vue'
@@ -16,6 +16,11 @@ console.log(canvasStore.nodes)
 const nodeTypes = shallowRef({
   component: ComponentNode
 })
+
+function onNodeClick(event: NodeMouseEvent) {
+  canvasStore.selectNode(event.node.id)
+}
+
 </script>
 
 <template>
@@ -23,6 +28,7 @@ const nodeTypes = shallowRef({
     <VueFlow
       :nodes="canvasStore.nodes"
       :node-types="nodeTypes"
+      @node-click="onNodeClick"
     >
       <Background />
       <Controls />
